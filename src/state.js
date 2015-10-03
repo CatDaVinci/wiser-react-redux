@@ -12,9 +12,7 @@ const createStoreWithMiddleware = applyMiddleware(
 )(createStore);
 
 const store = createStoreWithMiddleware(reducer, {
-  product: {
-    title: 'First',
-  },
+  products: [],
 });
 
 export default store;

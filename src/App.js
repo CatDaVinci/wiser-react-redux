@@ -1,12 +1,34 @@
+import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
+import { loadProducts } from './actions';
+import { bindActionCreators } from 'redux';
+import ProductTableRow  from './components/productTableRow';
 
-export default class App extends Component {
+class App extends Component {
+  handleClick() {
+    this.props.loadProducts();
+  }
+
   render() {
     return (
       <div>
-        <h1>Hello, world.</h1>
-      </div>
+        <Button onClick={::this.handleClick}>LoadProducts</Button>
+        <table>
+          <tbody>
+            { this.props.products.map((product) => <ProductTableRow {...product}></ProductTableRow> )}
+          </tbody>
+        </table>
+    </div>
     );
   }
+
+  propTypes: {
+    products: React.PropTypes.array,
+  }
 }
+
+export default connect(
+  (state) => { return { products: state.products }; },
+  (dispatch) => bindActionCreators({loadProducts}, dispatch)
+)(App)
