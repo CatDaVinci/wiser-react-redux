@@ -1,25 +1,33 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
 import { loadProducts } from './actions';
 import { bindActionCreators } from 'redux';
-import ProductTableRow  from './components/productTableRow';
+import ProductsTable  from './components/productsTable';
+import ProductsPagination from './components/productsPagination';
+import CategoryFilter from './components/categoryFilter';
+import { Grid, Row, Col } from 'react-bootstrap';
+
 
 class App extends Component {
-  handleClick() {
+  componentWillMount() {
     this.props.loadProducts();
   }
 
   render() {
+    const products = this.props.products;
+
     return (
-      <div>
-        <Button onClick={::this.handleClick}>LoadProducts</Button>
-        <table>
-          <tbody>
-            { this.props.products.map((product) => <ProductTableRow {...product}></ProductTableRow> )}
-          </tbody>
-        </table>
-    </div>
+      <Grid>
+        <Row>
+          <Col md={6} xsOffset={6}><h1>FOR FILTER</h1></Col>
+        </Row>
+        <Row>
+          <Col md={8} xsOffset={2}><ProductsTable products = {products}/></Col>
+        </Row>
+        <Row>
+          <Col md={6} xsOffset={6}><ProductsPagination /></Col>
+        </Row>
+      </Grid>
     );
   }
 
