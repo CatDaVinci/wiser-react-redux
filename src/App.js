@@ -18,11 +18,12 @@ class App extends Component {
     const page = this.props.page;
     const changePage = this.props.changePage;
     const deleteProduct = this.props.deleteProduct;
+    const loadProducts = this.props.loadProducts;
 
     return (
       <Grid>
         <Row>
-          <Col md={6} xsOffset={6}><CategoryFilter /><br/><br/></Col>
+          <Col md={6} xsOffset={6}><CategoryFilter loadProducts={loadProducts} page={page}/><br/><br/></Col>
         </Row>
         <Row>
           <Col md={8} xsOffset={2}><ProductsTable products={products} deleteProduct={deleteProduct}/></Col>

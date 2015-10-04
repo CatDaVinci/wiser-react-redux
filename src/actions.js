@@ -1,10 +1,10 @@
 import { getProducts, destroyProduct } from './api'
 
-export function loadProducts(page) {
+export function loadProducts(page, filter='') {
   return {
     type: 'PROMISE',
     actions: ['PRODUCTS_LOADING', 'PRODUCTS_LOADED', 'PRODUCTS_LOAD_FAILURE'],
-    promise: getProducts(page),
+    promise: getProducts(page, filter),
   };
 }
 
