@@ -3,7 +3,10 @@ export default function (state = [], action) {
   case 'PRODUCTS_LOADED':
     return action.data;
   case 'PRODUCT_DELETED':
-    return state; //пришол обьект который удалили надо удалить его из состояния
+    let newState = {...state};
+    const elementPos = newState.map(function(x) {return x.id; }).indexOf(action.data.id);
+    newState.splice(elementPos, 1);
+    return newState;
   default:
     return state;
   }

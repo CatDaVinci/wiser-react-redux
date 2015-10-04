@@ -10,7 +10,6 @@ class CategoryFilter extends Component {
 
   render() {
     const categories = this.state.categories;
-    console.log(categories);
     return (
       <select>
         <option>All</option>

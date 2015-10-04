@@ -3,8 +3,14 @@ import ProductTableRow  from './productTableRow';
 import { Table } from 'react-bootstrap';
 
 class ProductsTable extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     const products = this.props.products;
+    const deleteProduct = this.props.deleteProduct;
+
     return (
       <Table striped bordered condensed hover>
           <thead>
@@ -18,7 +24,7 @@ class ProductsTable extends Component {
             </tr>
           </thead>
           <tbody>
-             { products.map((product) => <ProductTableRow {...product}></ProductTableRow>) }
+             { products.map((product) => <ProductTableRow {...product} deleteProduct={deleteProduct}></ProductTableRow>) }
           </tbody>
       </Table>
     );
@@ -26,7 +32,7 @@ class ProductsTable extends Component {
 }
 
 ProductTableRow.propTypes = {
-  products: PropTypes.array.isRequired,
+  products: PropTypes.array,
 };
 
 export default ProductsTable;

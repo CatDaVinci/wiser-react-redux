@@ -1,4 +1,4 @@
-import {getProducts} from './api'
+import { getProducts, destroyProduct } from './api'
 
 export function loadProducts(page) {
   return {
@@ -10,15 +10,17 @@ export function loadProducts(page) {
 
 export function changePage(page) {
   return {
-    type: 'CHANGE_PAGE',
+    type: 'PROMISE',
     page: page,
-  }
+    actions: ['CHANGE_PAGE', 'PRODUCTS_LOADED', 'PRODUCTS_LOAD_FAILURE'],
+    promise: getProducts(page),
+  };
 }
 
 export function deleteProduct(id) {
   return {
     type: 'PROMISE',
     actions: ['PRODUCT_DELETING', 'PRODUCT_DELETED', 'PRODUCT_DELETE_FAILURE'],
-    promise: deleteProduct(id)
-  }
+    promise: destroyProduct(id),
+  };
 }

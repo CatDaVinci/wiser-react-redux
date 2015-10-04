@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { loadProducts, changePage } from './actions';
+import { loadProducts, changePage, deleteProduct } from './actions';
 import { bindActionCreators } from 'redux';
 import ProductsTable  from './components/productsTable';
 import ProductsPagination from './components/productsPagination';
@@ -13,16 +13,11 @@ class App extends Component {
     this.props.loadProducts(this.props.page);
   }
 
-  componentWillReceiveProps(newProps) {
-    if(newProps.page !== this.props.page) {
-      this.props.loadProducts(this.props.page);
-    }
-  }
-
   render() {
     const products = this.props.products;
     const page = this.props.page;
-    const pageChange = this.props.changePage;
+    const changePage = this.props.changePage;
+    const deleteProduct = this.props.deleteProduct;
 
     return (
       <Grid>
@@ -30,7 +25,7 @@ class App extends Component {
           <Col md={6} xsOffset={6}><CategoryFilter /><br/><br/></Col>
         </Row>
         <Row>
-          <Col md={8} xsOffset={2}><ProductsTable products={products}/></Col>
+          <Col md={8} xsOffset={2}><ProductsTable products={products} deleteProduct={deleteProduct}/></Col>
         </Row>
         <Row>
           <Col md={6} xsOffset={6}><ProductsPagination page={page} changePage={changePage} /></Col>
@@ -45,9 +40,10 @@ App.propTypes = {
   page: React.PropTypes.number,
   loadProducts: React.PropTypes.func,
   changePage: React.PropTypes.func,
+  deleteProduct: React.PropTypes.func,
 }
 
 export default connect(
   (state) => { return { products: state.products, page: state.page }; },
-  (dispatch) => bindActionCreators({loadProducts, changePage}, dispatch)
+  (dispatch) => bindActionCreators({loadProducts, changePage, deleteProduct}, dispatch)
 )(App)

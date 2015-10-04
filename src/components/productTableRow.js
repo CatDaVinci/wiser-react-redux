@@ -2,9 +2,18 @@ import React, { Component, PropTypes } from 'react';
 import { Button, Glyphicon } from 'react-bootstrap';
 
 class ProductTableRow extends Component {
+  constructor(props) {
+    super(props);
+  }
+  
+  handleDestroyClick() {
+    this.props.deleteProduct(this.props.id);
+  }
+
   render() {
-    const { id, title, sku, category } = this.props;
+    const { id, title, sku, category, deleteProduct } = this.props;
     const editlink = '/products/' + id + '/edit';
+
     return (
     <tr key={id}>
       <td>{id}</td>
@@ -12,7 +21,7 @@ class ProductTableRow extends Component {
       <td>{sku}</td>
       <td>{category}</td>
       <td><Button bsStyle="warning"><Glyphicon glyph="edit" /></Button></td>
-      <td><Button bsStyle="danger"><Glyphicon glyph="trash" /></Button></td>
+      <td><Button bsStyle="danger" onClick={::this.handleDestroyClick}><Glyphicon glyph="trash" /></Button></td>
     </tr>
     );
   }
