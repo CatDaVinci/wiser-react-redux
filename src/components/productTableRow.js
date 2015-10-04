@@ -4,15 +4,16 @@ import { Button, Glyphicon } from 'react-bootstrap';
 class ProductTableRow extends Component {
   render() {
     const { id, title, sku, category } = this.props;
-      return (
-      <tr>
-        <td>{id}</td>
-        <td>{title}</td>
-        <td>{sku}</td>
-        <td>{category}</td>
-        <td><Button bsStyle="warning"><Glyphicon glyph="edit" /></Button></td>
-        <td><Button bsStyle="danger"><Glyphicon glyph="trash" /></Button></td>
-      </tr>
+    const editlink = '/products/' + id + '/edit';
+    return (
+    <tr key={id}>
+      <td>{id}</td>
+      <td>{title}</td>
+      <td>{sku}</td>
+      <td>{category}</td>
+      <td><Button bsStyle="warning"><Glyphicon glyph="edit" /></Button></td>
+      <td><Button bsStyle="danger"><Glyphicon glyph="trash" /></Button></td>
+    </tr>
     );
   }
 }

@@ -13,6 +13,7 @@ const createStoreWithMiddleware = applyMiddleware(
 
 const store = createStoreWithMiddleware(reducer, {
   products: [],
+  page: 1,
 });
 
 export default store;

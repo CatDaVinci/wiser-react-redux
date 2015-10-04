@@ -1,18 +1,10 @@
 import { Pagination } from 'react-bootstrap';
 import React, { Component, PropTypes } from 'react';
 
-const ProductsPagination = React.createClass({
-  getInitialState() {
-    return {
-      activePage: 1
-    };
-  },
-
+class ProductsPagination extends Component {
   handleSelect(event, selectedEvent) {
-    this.setState({
-      activePage: selectedEvent.eventKey
-    });
-  },
+    this.props.changePage(selectedEvent.eventKey);
+  }
 
   render() {
     return (
@@ -24,10 +16,15 @@ const ProductsPagination = React.createClass({
         ellipsis
         items={20}
         maxButtons={5}
-        activePage={this.state.activePage}
-        onSelect={this.handleSelect} />
+        activePage={this.props.page}
+        onSelect={::this.handleSelect} />
     );
   }
-});
+};
+
+ProductsPagination.propTypes = {
+  page: PropTypes.number.isRequired,
+  changePage: PropTypes.func.isRequired,
+};
 
 export default ProductsPagination;

@@ -13,6 +13,8 @@ class ProductsTable extends Component {
               <th>Title</th>
               <th>SKU</th>
               <th>Category</th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>

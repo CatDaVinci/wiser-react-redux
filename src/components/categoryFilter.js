@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Select } from 'react-bootstrap';
 
 class CategoryFilter extends Component {
   constructor(props) {
@@ -11,10 +10,12 @@ class CategoryFilter extends Component {
 
   render() {
     const categories = this.state.categories;
+    console.log(categories);
     return (
-      <Select>Categories
+      <select>
+        <option>All</option>
         { categories.map( (category) => <option value={category}>{category}</option>)}
-      </Select>
+      </select>
     );
   }
 }
