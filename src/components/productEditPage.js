@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { editProduct } from '../action'
+import { editProduct } from '../actions';
+import FormInput from './formInput';
+import { bindActionCreators } from 'redux';
 
 @connect(
   (state) => { return { products: state.products }; },
@@ -9,12 +11,9 @@ import { editProduct } from '../action'
 
 class ProductEditPage extends Component {
   render() {
-      return (
-        <div>
-            <label>Title</label>
-            <input type='text'/>
-        </div>
-      );
+    return (
+      <h1>OLOLO</h1>
+    );
   }
 }
 

@@ -39,12 +39,12 @@ class ProductsPage extends Component {
   }
 }
 
-// ProductsPage.propTypes = {
-//   products: React.PropTypes.array,
-//   page: React.PropTypes.number,
-//   loadProducts: React.PropTypes.func,
-//   changePage: React.PropTypes.func,
-//   deleteProduct: React.PropTypes.func,
-// }
+ProductsPage.propTypes = {
+  products: React.PropTypes.array,
+  page: React.PropTypes.number,
+  loadProducts: React.PropTypes.func,
+  changePage: React.PropTypes.func,
+  deleteProduct: React.PropTypes.func,
+}
 
 export default ProductsPage;

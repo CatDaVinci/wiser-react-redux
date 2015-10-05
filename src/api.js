@@ -10,3 +10,10 @@ export function getProducts(page, filter) {
     })
   ;
 }
+
+export function updateProduct(product){
+  const url = API + 'products/' + product.id;
+  return fetch(url, {method: 'put'}).
+    then((r) => r.json())
+  ;
+}
