@@ -4,6 +4,7 @@ import { loadProducts, changePage } from './actions';
 import { bindActionCreators } from 'redux';
 import ProductsTable  from './components/productsTable';
 import ProductsPagination from './components/productsPagination';
+import Product from './components/product'
 import { Grid, Row, Col } from 'react-bootstrap';
 
 class App extends Component {
@@ -22,7 +23,8 @@ class App extends Component {
     return (
       <Grid>
         <Row>
-          <Col md={8} xsOffset={2}><ProductsTable products={products} loadProducts={loadProducts} page={page}/></Col>
+          <Col md={4}><Product/></Col>
+          <Col md={8}><ProductsTable products={products} loadProducts={loadProducts} page={page}/></Col>
         </Row>
         <Row>
           <Col md={6} xsOffset={6}><ProductsPagination page={page} products={products} changePage={changePage} /></Col>
