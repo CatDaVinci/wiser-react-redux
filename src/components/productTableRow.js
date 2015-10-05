@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
 import { Button, Glyphicon } from 'react-bootstrap';
 
 class ProductTableRow extends Component {
@@ -16,7 +17,11 @@ class ProductTableRow extends Component {
       <td>{title}</td>
       <td>{sku}</td>
       <td>{category}</td>
-      <td><Button bsStyle="warning"><Glyphicon glyph="edit" /></Button></td>
+      <td>
+        <Link to='editProduct' params={{ id }}>
+          <Button bsStyle="warning"><Glyphicon glyph="edit" /></Button>
+        </Link>
+      </td>
     </tr>
     );
   }

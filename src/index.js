@@ -1,14 +1,18 @@
 import React from 'react';
 import App from './App';
+import ProductsPage from './components/productsPage'
 import store from './state';
 import {Provider} from 'react-redux';
 import Router, {Route, DefaultRoute, Redirect} from 'react-router';
-import Product from './components/product';
+import ProductEditPage from './components/productEditPage';
 
 
 const routes = (
-  <Route path="/" component={App}>
-      <Route path="products/:id/edit" handler={Product} />
+  <Route path="/" handler={App}>
+    <Route name='products'>
+      <DefaultRoute handler={ProductsPage} />
+      <Route name='editProduct' path=":id/edit" handler={ProductEditPage} />
+    </Route>
   </Route>
 );
 

@@ -1,4 +1,4 @@
-import { getProducts, destroyProduct } from './api'
+import { getProducts, destroyProduct, updateProduct } from './api'
 
 export function loadProducts(page, filter) {
   return {
@@ -15,4 +15,12 @@ export function changePage(page) {
     actions: ['CHANGE_PAGE', 'PRODUCTS_LOADED', 'PRODUCTS_LOAD_FAILURE'],
     promise: getProducts(page),
   };
+}
+
+export function editProduct(product) {
+  return {
+    type: 'PROMISE',
+    actions: ['PRODUCT_UPDATING', 'PRODUCT_UPDATED', 'PRODUCT_UPDATE_FAILURE'],
+    promise: updateProduct(product),
+  }
 }
