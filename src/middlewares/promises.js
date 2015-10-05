@@ -6,6 +6,7 @@ const middleware = store => next => action => {
   store.dispatch({
     type: startAction,
     page: action.page,
+    filter: action.filter,
   });
   action.promise.then((data) => store.dispatch({
     type: successAction,

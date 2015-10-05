@@ -9,8 +9,8 @@ class ProductsPagination extends Component {
     };
   }
 
-  handleSelect(event, selectedEvent) {
-    this.props.changePage(selectedEvent.eventKey);
+  handlePagination(event, selectedEvent) {
+    this.props.changePage(selectedEvent.eventKey, this.props.filter);
   }
 
   render() {
@@ -26,7 +26,7 @@ class ProductsPagination extends Component {
         items={Math.ceil(products.length/20 + 10)}
         maxButtons={5}
         activePage={this.props.page}
-        onSelect={::this.handleSelect} />
+        onSelect={::this.handlePagination} />
     );
   }
 };
