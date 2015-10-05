@@ -4,19 +4,21 @@ class CategoryFilter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      categories: ['sport', 'music'],
+      categories: ['all', 'sport', 'music'],
+      category: 'all',
     }
   }
 
   handleSelect(event) {
-    this.props.loadProducts(this.props.page, 'sport');
+    const category = event.target.value;
+    this.setState({category: category})
   }
 
   render() {
     const categories = this.state.categories;
     return (
-      <select value='all' onChange={::this.handleSelect}>
-        <option value='all'>All</option>
+      <select onChange={::this.handleSelect} value={ this.state.category }>
+        <option value='all'>all</option>
         { categories.map( (category) => <option value={category}>{category}</option>) }
       </select>
     );

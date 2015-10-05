@@ -13,6 +13,14 @@ class App extends Component {
     this.props.loadProducts(this.props.page);
   }
 
+  handleFilterMusicClick() {
+    this.props.loadProducts(this.props.page, 'music');
+  }
+
+  handleFilterSportClick() {
+    this.props.loadProducts(this.props.page, 'sport');
+  }
+
   render() {
     const products = this.props.products;
     const page = this.props.page;
@@ -23,7 +31,10 @@ class App extends Component {
     return (
       <Grid>
         <Row>
-          <Col md={6} xsOffset={6}><CategoryFilter loadProducts={loadProducts} page={page}/><br/><br/></Col>
+          <Col md={6}><button onClick={::this.handleFilterMusicClick}>Only music</button>
+            <button onClick={::this.handleFilterSportClick}>Only Sport</button>
+          </Col>
+          <Col md={6}><CategoryFilter loadProducts={loadProducts} page={page}/><br/><br/></Col>
         </Row>
         <Row>
           <Col md={8} xsOffset={2}><ProductsTable products={products} deleteProduct={deleteProduct}/></Col>
