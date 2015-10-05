@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import ProductTableRow  from './productTableRow';
+import CategoryFilter from './categoryFilter';
 import { Table } from 'react-bootstrap';
 
 class ProductsTable extends Component {
@@ -9,7 +10,8 @@ class ProductsTable extends Component {
 
   render() {
     const products = this.props.products;
-    const deleteProduct = this.props.deleteProduct;
+    const page = this.props.page;
+    const loadProducts = this.props.loadProducts;
 
     return (
       <Table striped bordered condensed hover>
@@ -19,12 +21,11 @@ class ProductsTable extends Component {
               <th>Title</th>
               <th>SKU</th>
               <th>Category</th>
-              <th></th>
-              <th></th>
+              <th><CategoryFilter loadProducts={loadProducts} page={page}/></th>
             </tr>
           </thead>
           <tbody>
-             { products.map((product) => <ProductTableRow {...product} deleteProduct={deleteProduct}></ProductTableRow>) }
+             { products.map((product) => <ProductTableRow {...product}></ProductTableRow>) }
           </tbody>
       </Table>
     );

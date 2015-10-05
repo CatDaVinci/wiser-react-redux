@@ -14,6 +14,8 @@ class ProductsPagination extends Component {
   }
 
   render() {
+    const products = this.props.products;
+
     return (
       <Pagination
         prev
@@ -21,7 +23,7 @@ class ProductsPagination extends Component {
         first
         last
         ellipsis
-        items={20}
+        items={Math.ceil(products.length/20 + 10)}
         maxButtons={5}
         activePage={this.props.page}
         onSelect={::this.handleSelect} />

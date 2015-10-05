@@ -14,6 +14,7 @@ const createStoreWithMiddleware = applyMiddleware(
 const store = createStoreWithMiddleware(reducer, {
   products: [],
   page: 1,
+  totalPages: 0,
 });
 
 export default store;

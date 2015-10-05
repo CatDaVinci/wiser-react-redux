@@ -1,24 +1,15 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { loadProducts, changePage, deleteProduct } from './actions';
+import { loadProducts, changePage } from './actions';
 import { bindActionCreators } from 'redux';
 import ProductsTable  from './components/productsTable';
 import ProductsPagination from './components/productsPagination';
-import CategoryFilter from './components/categoryFilter';
 import { Grid, Row, Col } from 'react-bootstrap';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.props.loadProducts(this.props.page);
-  }
-
-  handleFilterMusicClick() {
-    this.props.loadProducts(this.props.page, 'music');
-  }
-
-  handleFilterSportClick() {
-    this.props.loadProducts(this.props.page, 'sport');
   }
 
   render() {
@@ -31,16 +22,10 @@ class App extends Component {
     return (
       <Grid>
         <Row>
-          <Col md={6}><button onClick={::this.handleFilterMusicClick}>Only music</button>
-            <button onClick={::this.handleFilterSportClick}>Only Sport</button>
-          </Col>
-          <Col md={6}><CategoryFilter loadProducts={loadProducts} page={page}/><br/><br/></Col>
+          <Col md={8} xsOffset={2}><ProductsTable products={products} loadProducts={loadProducts} page={page}/></Col>
         </Row>
         <Row>
-          <Col md={8} xsOffset={2}><ProductsTable products={products} deleteProduct={deleteProduct}/></Col>
-        </Row>
-        <Row>
-          <Col md={6} xsOffset={6}><ProductsPagination page={page} changePage={changePage} /></Col>
+          <Col md={6} xsOffset={6}><ProductsPagination page={page} products={products} changePage={changePage} /></Col>
         </Row>
       </Grid>
     );
@@ -56,6 +41,6 @@ App.propTypes = {
 }
 
 export default connect(
-  (state) => { return { products: state.products, page: state.page }; },
-  (dispatch) => bindActionCreators({loadProducts, changePage, deleteProduct}, dispatch)
+  (state) => { return { products: state.products, page: state.page, totalProducts: state.totalProducts }; },
+  (dispatch) => bindActionCreators({loadProducts, changePage}, dispatch)
 )(App)
