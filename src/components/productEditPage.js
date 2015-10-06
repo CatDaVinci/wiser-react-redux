@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { editProduct } from '../actions';
 import FormInput from './formInput';
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router';
 
 @connect(
   (state, props) => {
@@ -17,7 +18,7 @@ class ProductEditPage extends Component {
     super(props);
     this.state = {
       categories: ['all', 'sport', 'music'],
-      category: 'all',
+      category: this.props.product.category,
       id: props.params.id,
     }
   }
@@ -27,26 +28,43 @@ class ProductEditPage extends Component {
     this.setState({category: category});
   }
 
+  submitForm() {
+    const updatedProduct = {
+      title: React.findDOMNode(this.refs.productTitle).value,
+      sku: React.findDOMNode(this.refs.productSKU).value,
+      category: React.findDOMNode(this.refs.productCategory).value,
+    }
+    console.log(updatedProduct);
+  }
+
   render() {
     const categories = this.state.categories;
+    const product = this.props.product;
 
     return (
-      <form>
+      <div>
         <label>
           Title
-          <input type='text'></input>
+          <input type='text' ref='productTitle' defaultValue={product.title} />
         </label>
+        <br/><br/>
         <label>
           SKU
-          <input type='text'></input>
+          <input type='text' ref='productSKU' defaultValue={product.sku} />
         </label>
+        <br/><br/>
         <label>
           Category
-          <select onChange={::this.handleSelect} value={this.state.category}>
+          <select onChange={::this.handleSelect} ref='productCategory' defaultValue={this.state.category}>
             {categories.map( (category) => <option value={category}>{category}</option>)}
           </select>
         </label>
-      </form>
+        <br/><br/>
+          <button onClick={::this.submitForm}>Submit</button>
+        <Link to='products'>
+          <button>Cancel</button>
+        </Link>
+      </div>
     );
   }
 }

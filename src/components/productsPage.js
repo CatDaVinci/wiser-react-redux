@@ -19,7 +19,6 @@ class ProductsPage extends Component {
   constructor(props) {
     super(props);
     this.props.loadProducts(this.props.page, this.props.filter);
-        console.log(this.props);
   }
 
   render() {
