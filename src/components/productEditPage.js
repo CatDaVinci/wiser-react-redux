@@ -4,6 +4,7 @@ import { editProduct } from '../actions';
 import FormInput from './formInput';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
+import { Grid, Row, Col, Input, Label, Button } from 'react-bootstrap';
 
 @connect(
   (state, props) => {
@@ -17,7 +18,7 @@ class ProductEditPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      categories: ['all', 'sport', 'music'],
+      categories: ['sport', 'music'],
       category: this.props.product.category,
       id: props.params.id,
     }
@@ -30,41 +31,48 @@ class ProductEditPage extends Component {
 
   submitForm() {
     const updatedProduct = {
+      id: this.props.params.id,
       title: React.findDOMNode(this.refs.productTitle).value,
       sku: React.findDOMNode(this.refs.productSKU).value,
       category: React.findDOMNode(this.refs.productCategory).value,
     }
-    console.log(updatedProduct);
+    editProduct(updatedProduct);
   }
 
   render() {
     const categories = this.state.categories;
     const product = this.props.product;
+    const cancelStyle = {
+      margin: '10px',
+    }
 
     return (
-      <div>
-        <label>
-          Title
-          <input type='text' ref='productTitle' defaultValue={product.title} />
-        </label>
-        <br/><br/>
-        <label>
-          SKU
-          <input type='text' ref='productSKU' defaultValue={product.sku} />
-        </label>
-        <br/><br/>
-        <label>
-          Category
-          <select onChange={::this.handleSelect} ref='productCategory' defaultValue={this.state.category}>
+      <Grid>
+        <Row><Col md={6} xsOffset={3}><h1>Edit Product</h1></Col></Row>
+        <Row><Col md={6} xsOffset={3}>
+          <h3><Label bsSize='small' bsStyle='warning'>
+            Title
+          </Label></h3>
+          <Input type='text' ref='productTitle' defaultValue={product.title} />
+          <h3><Label bsStyle='warning'>
+            SKU
+          </Label></h3>
+          <Input type='text' ref='productSKU' defaultValue={product.sku} />
+          <h3><Label bsStyle='warning'>
+            Category
+          </Label></h3>
+          <Input type="select" onChange={::this.handleSelect} ref='productCategory' defaultValue={this.state.category}>
             {categories.map( (category) => <option value={category}>{category}</option>)}
-          </select>
-        </label>
-        <br/><br/>
-          <button onClick={::this.submitForm}>Submit</button>
-        <Link to='products'>
-          <button>Cancel</button>
-        </Link>
-      </div>
+          </Input>
+          <Link to='products'>
+            <Button bsStyle='success' onClick={::this.submitForm}>Submit</Button>
+          </Link>
+          <Link to='products'>
+            <Button  style={cancelStyle}>Cancel</Button>
+          </Link>
+        </Col>
+        </Row>
+      </Grid>
     );
   }
 }

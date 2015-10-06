@@ -8,7 +8,10 @@ import ProductEditPage from './components/productEditPage';
 
 
 const routes = (
-  <Route path="/" handler={App}>
+  <Route>
+    <Route handler={App}>
+      <Route path='/' handler={ProductsPage} />
+    </Route>
     <Route name='products'>
       <DefaultRoute handler={ProductsPage} />
       <Route name='editProduct' path=":id/edit" handler={ProductEditPage} />

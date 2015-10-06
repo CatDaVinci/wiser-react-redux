@@ -10,8 +10,15 @@ export function getProducts(page, filter) {
 }
 
 export function updateProduct(product){
-  const url = API + 'products/' + product.id;
-  return fetch(url, {method: 'put'}).
+  const url = API + '/products/' + product.id;
+  return fetch(url, {
+    method: 'put',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({product}),
+    }).
     then((r) => r.json())
   ;
 }
