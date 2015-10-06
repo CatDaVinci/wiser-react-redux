@@ -23,7 +23,7 @@ class ProductsPagination extends Component {
         first
         last
         ellipsis
-        items={Math.ceil(products.length/20 + 10)}
+        items={this.props.totalPages}
         maxButtons={5}
         activePage={this.props.page}
         onSelect={::this.handlePagination} />

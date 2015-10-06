@@ -1,7 +1,7 @@
 export default function (state = [], action) {
   switch (action.type) {
   case 'PRODUCTS_LOADED':
-    return action.data;
+    return action.data.products;
   case 'PRODUCT_UPDATED':
     let newState = {...state};
     const elementPos = newState.map(function(x) {return x.id; }).indexOf(action.data.id);
