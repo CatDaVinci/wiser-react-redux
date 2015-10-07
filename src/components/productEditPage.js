@@ -26,15 +26,15 @@ class ProductEditPage extends Component {
 
   handleSelect(event) {
     const category = event.target.value;
-    this.setState({category: category});
+    this.state.category = category;
   }
 
   submitForm() {
     const updatedProduct = {
       id: this.props.params.id,
-      title: React.findDOMNode(this.refs.productTitle).value,
-      sku: React.findDOMNode(this.refs.productSKU).value,
-      category: React.findDOMNode(this.refs.productCategory).value,
+      title: this.refs.productTitle.getValue(),
+      sku: this.refs.productSKU.getValue(),
+      category: this.refs.productCategory.getValue(),
     }
     editProduct(updatedProduct);
   }
@@ -62,7 +62,7 @@ class ProductEditPage extends Component {
             Category
           </Label></h3>
           <Input type="select" onChange={::this.handleSelect} ref='productCategory' defaultValue={this.state.category}>
-            {categories.map( (category) => <option value={category}>{category}</option>)}
+            {categories.map( (category) => <option key={category} value={category}>{category}</option>)}
           </Input>
           <Link to='products'>
             <Button bsStyle='success' onClick={::this.submitForm}>Submit</Button>

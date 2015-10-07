@@ -15,5 +15,6 @@ export function editProduct(product) {
     type: 'PROMISE',
     actions: ['PRODUCT_UPDATING', 'PRODUCT_UPDATED', 'PRODUCT_UPDATE_FAILURE'],
     promise: updateProduct(product),
+    filter: product.filter,
   }
 }
