@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { loadProducts, updateProduct } from '../actions';
+import { loadProducts } from '../actions';
 import { bindActionCreators } from 'redux';
 
-import ProductsTable  from './productsTable';
-import ProductsPagination from './productsPagination';
+import ProductsTable  from '../components/productsTable';
+import ProductsPagination from '../components/productsPagination';
 import ProductEditPage from './productEditPage';
 
 @connect(
   (state) => { return {
     products: state.products, page: state.page, totalPages: state.totalPages, filter: state.filter };
   },
-  (dispatch) => bindActionCreators({loadProducts, updateProduct}, dispatch)
+  (dispatch) => bindActionCreators({loadProducts}, dispatch)
 )
 
 class ProductsPage extends Component {
@@ -31,7 +31,7 @@ class ProductsPage extends Component {
     return (
       <Grid>
         <Row>
-          <Col md={8} xsOffset={2}><ProductsTable products={products} loadProducts={loadProducts} page={page}/></Col>
+          <Col md={8} xsOffset={2}><ProductsTable products={products} loadProducts={loadProducts} page={page} filter={filter}/></Col>
         </Row>
         <Row>
           <Col md={6} xsOffset={6}><ProductsPagination page={page} filter={filter} products={products} changePage={loadProducts} totalPages={totalPages} /></Col>

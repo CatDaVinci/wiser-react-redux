@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { RouteHandler } from 'react-router';
-import ProductsPage from './components/productsPage';
-import ProductEditPage from './components/productEditPage';
+import ProductsPage from './containers/productsPage';
+import ProductEditPage from './containers/productEditPage';
 
 export default class App extends Component {
   render() {

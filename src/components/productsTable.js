@@ -12,6 +12,7 @@ class ProductsTable extends Component {
     const products = this.props.products;
     const page = this.props.page;
     const loadProducts = this.props.loadProducts;
+    const filter = this.props.filter;
 
     return (
       <Table striped bordered condensed hover>
@@ -21,11 +22,11 @@ class ProductsTable extends Component {
               <th>Title</th>
               <th>SKU</th>
               <th>Category</th>
-              <th><CategoryFilter loadProducts={loadProducts} page={page}/></th>
+              <th><CategoryFilter loadProducts={loadProducts} page={page} filter={filter}/></th>
             </tr>
           </thead>
           <tbody>
-             { products.map((product) => <ProductTableRow {...product}></ProductTableRow>) }
+             { products.map((product) => <ProductTableRow key={product.id} {...product}></ProductTableRow>) }
           </tbody>
       </Table>
     );

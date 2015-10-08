@@ -5,7 +5,7 @@ class CategoryFilter extends Component {
     super(props);
     this.state = {
       categories: ['all', 'sport', 'music'],
-      category: 'all',
+      category: this.props.filter,
     }
   }
 
@@ -19,7 +19,7 @@ class CategoryFilter extends Component {
     const categories = this.state.categories;
     return (
       <select onChange={::this.handleSelect} value={ this.state.category }>
-        { categories.map( (category) => <option value={category}>{category}</option>) }
+        { categories.map( (category) => <option key={category} value={category}>{category}</option>) }
       </select>
     );
   }

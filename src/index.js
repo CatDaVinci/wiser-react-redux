@@ -1,10 +1,10 @@
 import React from 'react';
 import App from './App';
-import ProductsPage from './components/productsPage'
+import ProductsPage from './containers/productsPage'
 import store from './state';
 import {Provider} from 'react-redux';
 import Router, {Route, DefaultRoute, Redirect} from 'react-router';
-import ProductEditPage from './components/productEditPage';
+import ProductEditPage from './containers/productEditPage';
 
 
 const routes = (

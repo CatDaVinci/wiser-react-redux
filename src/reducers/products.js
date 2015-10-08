@@ -3,8 +3,8 @@ export default function (state = [], action) {
   case 'PRODUCTS_LOADED':
     return action.data.products;
   case 'PRODUCT_UPDATED':
-    let newState = {...state};
-    const elementPos = newState.map(function(x) {return x.id; }).indexOf(action.data.id);
+    let newState = state;
+    const elementPos = newState.indexOf(newState.filter((x) => {return x.id === action.data.id })[0]);
     newState.splice(elementPos, 1, action.data);
     return newState;
   default:

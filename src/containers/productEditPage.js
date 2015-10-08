@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { editProduct } from '../actions';
-import FormInput from './formInput';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
 import { Grid, Row, Col, Input, Label, Button } from 'react-bootstrap';
@@ -9,7 +8,7 @@ import { Grid, Row, Col, Input, Label, Button } from 'react-bootstrap';
 @connect(
   (state, props) => {
     const product = state.products.filter((x) => { return x.id === +props.params.id });
-    return { product: product[0] };
+    return { product: product[0], products: state.products };
   },
   (dispatch) => bindActionCreators({editProduct}, dispatch)
 )
@@ -20,7 +19,7 @@ class ProductEditPage extends Component {
     this.state = {
       categories: ['sport', 'music'],
       category: this.props.product.category,
-      id: props.params.id,
+      id: props.product.id,
     }
   }
 
@@ -36,7 +35,7 @@ class ProductEditPage extends Component {
       sku: this.refs.productSKU.getValue(),
       category: this.refs.productCategory.getValue(),
     }
-    editProduct(updatedProduct);
+    this.props.editProduct(updatedProduct);
   }
 
   render() {
